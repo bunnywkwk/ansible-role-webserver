@@ -37,3 +37,10 @@
     name: nginx
     enabled: true
     state: started
+
+- name: Download the site logo
+  ansible.builtin.get_url:
+    url: https://www.redhat.com/favicon.ico
+    dest: /usr/share/nginx/html/favicon.ico
+    mode: "0644"
+    validate_certs: false
