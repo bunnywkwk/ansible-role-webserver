@@ -1,0 +1,24 @@
+---
+# Checked before any task runs: a wrong type, such as
+# webserver_port: "abc", fails fast with a clear message.
+argument_specs:
+  main:
+    short_description: Install nginx with a custom index page.
+    description:
+      - Installs nginx, writes an index page showing O(webserver_message),
+        opens O(webserver_port) in firewalld and keeps nginx running.
+    options:
+      webserver_port:
+        type: int
+        default: 80
+        description: Port nginx serves the page on.
+      webserver_message:
+        type: str
+        default: Hello from the lab
+        description: Text shown on the index page.
+      webserver_manage_firewall:
+        type: bool
+        default: true
+        description:
+          - Open O(webserver_port) in firewalld.
+          - Set to false where firewalld does not run.

@@ -1,0 +1,39 @@
+---
+- name: Install nginx
+  ansible.builtin.dnf:
+    name: nginx
+    state: present
+
+# Our own server block: listens on webserver_port and serves webserver.html.
+# The package's index.html is a symlink it owns, so it is left alone.
+- name: Serve the page on webserver_port
+  ansible.builtin.template:
+    src: webserver.conf.j2
+    dest: /etc/nginx/conf.d/webserver.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Reload nginx
+
+# Static file: nginx serves the new content without a reload.
+- name: Write the page
+  ansible.builtin.template:
+    src: webserver.html.j2
+    dest: /usr/share/nginx/html/webserver.html
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Open the port in firewalld
+  ansible.posix.firewalld:
+    port: "{{ webserver_port }}/tcp"
+    permanent: true
+    immediate: true
+    state: enabled
+  when: webserver_manage_firewall
+
+- name: Keep nginx enabled and running
+  ansible.builtin.service:
+    name: nginx
+    enabled: true
+    state: started
