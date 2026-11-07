@@ -3,6 +3,7 @@
   ansible.builtin.dnf:
     name: nginx
     state: present
+  changed_when: true
 
 # Our own server block: listens on webserver_port and serves webserver.html.
 # The package's index.html is a symlink it owns, so it is left alone.
