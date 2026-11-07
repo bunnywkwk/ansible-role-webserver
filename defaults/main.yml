@@ -5,7 +5,7 @@
 webserver_port: 80
 
 # Text shown on the index page.
-webserver_message: "Hello from the lab"
+webserver_message: "Hello from the web"
 
 # Open webserver_port in firewalld.
 # Set to false where firewalld does not run, such as containers.
