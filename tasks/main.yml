@@ -7,7 +7,7 @@
 # Our own server block: listens on webserver_port and serves webserver.html.
 # The package's index.html is a symlink it owns, so it is left alone.
 - name: Serve the page on webserver_port
-  ansible.builtin.template:
+  ansible.builtin.templat:
     src: webserver.conf.j2
     dest: /etc/nginx/conf.d/webserver.conf
     owner: root
