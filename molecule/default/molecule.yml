@@ -21,8 +21,8 @@ verifier:
 scenario:
   # Written out so CI's checks are visible here and do not change with a
   # Molecule upgrade. prepare, side_effect and cleanup have no playbook here.
-  # No syntax step: it only checks converge.yml (the role is included at run
-  # time), and the Ansible lint gate already syntax-checks every playbook.
+  # No syntax step: the Ansible lint gate already syntax-checks
+  # converge.yml, and through import_role the role's tasks too.
   test_sequence:
     # Installs the podman driver's own collection (containers.podman); the
     # role's collections come from ../../requirements.yml in the prerun.
