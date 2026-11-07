@@ -1,0 +1,12 @@
+---
+# Port nginx serves the page on; opened in firewalld when
+# webserver_manage_firewall is true. Any port other than 80 on an SELinux
+# host also needs an http_port_t label (community.general.seport).
+webserver_port: 80
+
+# Text shown on the index page.
+webserver_message: "Hello from the lab"
+
+# Open webserver_port in firewalld.
+# Set to false where firewalld does not run, such as containers.
+webserver_manage_firewall: true

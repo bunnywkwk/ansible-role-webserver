@@ -1,0 +1,9 @@
+# {{ ansible_managed }}
+# The stock nginx.conf server has no default_server, so this one answers
+# every request on webserver_port.
+server {
+    listen      {{ webserver_port }} default_server;
+    listen      [::]:{{ webserver_port }} default_server;
+    root        /usr/share/nginx/html;
+    index       webserver.html;
+}

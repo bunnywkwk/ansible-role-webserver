@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: false
+  tasks:
+    # From the checkout, never a released tag: CI must test this change.
+    - name: Run the role from this checkout
+      ansible.builtin.include_role:
+        name: >-
+          {{ lookup('ansible.builtin.env', 'MOLECULE_PROJECT_DIRECTORY') }}

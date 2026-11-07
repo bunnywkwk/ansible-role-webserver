@@ -1,0 +1,6 @@
+---
+# Reload, not restart: nginx re-reads its config without dropping connections.
+- name: Reload nginx
+  ansible.builtin.service:
+    name: nginx
+    state: reloaded
